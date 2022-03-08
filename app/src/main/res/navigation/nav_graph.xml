@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.sortoutlayout.homeFragment"
+        android:label="Home Alarm"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.sortoutlayout.aboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about">
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.sortoutlayout.settingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+    </fragment>
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="com.example.sortoutlayout.settingsFragment"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_faq">
+    </fragment>
+</navigation>
