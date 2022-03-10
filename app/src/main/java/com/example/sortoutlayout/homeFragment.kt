@@ -1,9 +1,11 @@
 package com.example.sortoutlayout
 
 import android.content.Context
+import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
@@ -19,9 +21,11 @@ import com.android.volley.VolleyError
 import kotlinx.coroutines.NonCancellable.start
 import org.json.JSONObject
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.*
 import org.json.JSONException
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -42,14 +46,16 @@ class homeFragment : Fragment() {
 
 
     private var requestQueue: RequestQueue? = null
+    private var parentLinearLayout: LinearLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        parentLinearLayout = activity?.findViewById(R.id.parent_linear_layout)
 
         return binding.root
 
@@ -57,17 +63,20 @@ class homeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-
-            if (!checkSharedPreferences(view)) {
-                findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
-            }else{
-                sendrequest("test", view)
-            }
-
-
+        binding.buttonadd.setOnClickListener {
+            val inflater = activity?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val rowView: View = inflater.inflate(R.layout.field, null)
+             parentLinearLayout!!.addView(rowView, parentLinearLayout!!.childCount - 1)
         }
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -76,6 +85,8 @@ class homeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 
     fun sendrequest(massage: String,view: View){
         requestQueue = Volley.newRequestQueue(activity)

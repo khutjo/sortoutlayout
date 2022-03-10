@@ -10,7 +10,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_main0">Main0Activity</string>
 
-
+    <!--home screen-->
+    <string name="lineardefault">setup server connection</string>
+    <string name="gotosetup">Setup</string>
 
     <!--settings screen-->
     <string name="urllink">Enter Server Link</string>
